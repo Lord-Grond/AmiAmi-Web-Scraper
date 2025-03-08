@@ -1,0 +1,68 @@
+.centered
+{
+    text-align: center;
+}
+
+.title
+{
+    font-size: 48px;
+    color: orange;
+}
+
+.border
+{
+    border: 10px solid #4169E1;
+    padding: 20px;
+    max-width: 800px;
+    width: 90%;
+    margin: 0 auto
+}
+
+.sameline
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.tbwidth
+{
+    max-width: 1200px;
+}
+
+.form-full-width 
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-control.wider-search-bar 
+{
+    width: 500px;
+    max-width: 100%;
+}
+
+.select-width 
+{
+    width: 200px;
+}
+
+.image-box 
+{
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.image-box img
+{
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
