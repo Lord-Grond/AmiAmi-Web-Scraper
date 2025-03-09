@@ -2,7 +2,7 @@
 To help me look for anime figures, I made a basic web scraper for the popular anime merchandise site amiami.
 
 ## How it works
-Tech Used: Python, HTML/CSS, Bootstrap, Flask, selenium
+Tech Used: Python, HTML/CSS, Bootstrap, Flask, selenium\
 Flask is used for a web based user interface, selenium for fetching relevant HTML information from the website.
 
 ## Usage
