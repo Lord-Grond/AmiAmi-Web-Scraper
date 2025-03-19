@@ -50,8 +50,17 @@ def sort_by_price(r, rev):
 def sort_by_dp(r):
     if not r["dps"]:
         return
+    
+    def extract_percentage(dp):
+        if dp:
+            try:
+                return float(dp.replace("%", "")) if dp and "%" in dp else 0.0
+            except ValueError:
+                return 0.0
+        else:
+            return 0.0
 
-    sorted_r = sorted(zip(r["names"], r["prices"], r["ogs"], r["links"], r["tags"], r["brands"], r["dps"], r["imglinks"]), key=lambda x: "0" if x[6]=="" else x[6], reverse=True)
+    sorted_r = sorted(zip(r["names"], r["prices"], r["ogs"], r["links"], r["tags"], r["brands"], r["dps"], r["imglinks"]), key=lambda x: extract_percentage(x[6]), reverse=True)
     (r["names"], r["prices"], r["ogs"], r["links"], r["tags"], r["brands"], r["dps"], r["imglinks"],) =  map(list, zip(*sorted_r))
 
 
