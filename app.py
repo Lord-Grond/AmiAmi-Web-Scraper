@@ -10,6 +10,7 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from urllib.parse import quote
 from math import ceil
+import tempfile
 
 app = Flask(__name__)
 app.secret_key = 'cuteandfunny'
@@ -25,8 +26,9 @@ webdriver_path = "C:/Program Files (x86)/chromedriver-win64/chromedriver.exe"
 service = Service(ChromeDriverManager().install())
 
 chrome_options = Options()
-chrome_options.add_argument("user-data-dir=C:/Users/paulw/AppData/Local/Google/Chrome/User Data")
-chrome_options.add_argument("profile-directory=Default")
+temp_profile = tempfile.mkdtemp()
+chrome_options.add_argument(f"user-data-dir={temp_profile}")
+
 
 # dictionary format
 # search_results = {"names": [], "prices": [], "ogs": [], "links": [], "tags": [], "brands": [], "dps": [], "imglinks": []}
@@ -132,10 +134,10 @@ def search():
         driver.get(url)
 
         # wait until html is loaded
-        WebDriverWait(driver, 20).until(
-        EC.invisibility_of_element_located((By.CLASS_NAME, "loading-page"))
+        WebDriverWait(driver, 15).until(
+            EC.presence_of_element_located((By.XPATH, '//img[@src="/images/common/site_logo.png"]'))
         )
-    
+        
         html = driver.page_source
         soup = BeautifulSoup(html, "html.parser")
 
@@ -258,8 +260,8 @@ def big_deals():
         url = base_url + f"&pagecnt={page}"
         driver.get(url)
         
-        WebDriverWait(driver, 20).until(
-        EC.invisibility_of_element_located((By.CLASS_NAME, "loading-page"))
+        WebDriverWait(driver, 15).until(
+            EC.presence_of_element_located((By.XPATH, '//img[@src="/images/common/site_logo.png"]'))
         )
 
 #        if not go_preowned:
@@ -363,8 +365,3 @@ def big_deals():
     session['search_results']["imglinks"].extend(preowned["imglinks"])
 
     return redirect('/results')
-
-"""
-To Add:
--More details for figures
-"""
